@@ -1,0 +1,40 @@
+#include <stdio.h>
+#include <string.h>
+
+int indexOf(char text[], char word[]) {
+    int textLength = strlen(text);
+    int wordLength = strlen(word);
+    
+    if (wordLength > textLength) {
+        return -1;
+    }
+    
+    for (int i = 0; i <= textLength - wordLength; i++) {
+        int j;
+        for (j = 0; j < wordLength; j++) {
+            if (text[i + j] != word[j]) {
+                break;
+            }
+        }
+        if (j == wordLength) {
+            return i;
+        }
+    }
+    
+    return -1;
+}
+
+int main() {
+    char sentence[] = "The cat sat on the mat";
+    char word[] = "cat";
+    
+    int position = indexOf(sentence, word);
+    
+    if (position != -1) {
+        printf("Слово \"%s\" найдено на позиции %d\n", word, position);
+    } else {
+        printf("Слово \"%s\" не найдено в предложении\n", word);
+    }
+    
+    return 0;
+}
